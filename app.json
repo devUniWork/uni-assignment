@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "mobi-stock",
+    "slug": "mobi-stock",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
