@@ -1,21 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Theme} from './styles/theme';
+import StockPage from './pages/stock-page'
+import SearchPage from './pages/search-page'
+import {activeColor, secondaryColor, tabOptions, textColor} from "./constants";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer theme={Theme}  labeled={false}>
+        <Tab.Navigator
+          screenOptions={{
+            tabBarActiveTintColor: textColor,
+            tabBarActiveBackgroundColor: activeColor,
+            tabBarLabelStyle: {
+              fontSize: 14,
+              paddingBottom: 20,
+            },
+            tabBarIconStyle: {
+              marginTop: 15
+            },
+            tabBarStyle: {
+              backgroundColor: secondaryColor,
+              height: 80,
+              borderTopWidth: 0,
+
+            },
+          }}
+        >
+          <Tab.Screen name="Stocks" options={tabOptions(false)}  component={StockPage}/>
+          <Tab.Screen name="Search" options={tabOptions(true)} component={SearchPage}/>
+        </Tab.Navigator>
+      </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
